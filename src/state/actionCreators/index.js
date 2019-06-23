@@ -38,7 +38,7 @@ export const register = (
       isAdmin,
       cohort,
     })
-    .then(res => dispatch({ type: actionTypes.REGISTER }))
+    .then(res => dispatch({ type: actionTypes.REGISTER, payload: res.data }))
     .catch(err => {
       console.log(err.message);
       dispatch({ type: actionTypes.ERROR });
