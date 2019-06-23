@@ -15,5 +15,14 @@
       "spread": true
     }
   },
-  "rules": {}
+  "rules": {
+    "arrow-parens": 0,
+    "implicit-arrow-linebreak": 0,
+    "no-console": 0,
+    "function-paren-newline": 0,
+    "no-underscore-dangle": 0,
+    "operator-linebreak": 0,
+    "curly": 0,
+    "nonblock-statement-body-position": 0
+  }
 }
