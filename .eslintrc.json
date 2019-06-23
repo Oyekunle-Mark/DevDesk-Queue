@@ -15,5 +15,10 @@
       "spread": true
     }
   },
-  "rules": {}
+  "rules": {
+    "arrow-parens": 0,
+    "implicit-arrow-linebreak": 0,
+    "no-console": 0,
+    "function-paren-newline": 0
+  }
 }
