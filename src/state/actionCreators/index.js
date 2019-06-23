@@ -120,7 +120,7 @@ export const updateTicket = (id, title, description, category) => dispatch => {
 };
 
 export const getAdminTickets = id => dispatch => {
-  dispatch({ type: actionTypes.GETTING_ADMIN_TICKETS });
+  dispatch({ type: actionTypes.GETTING_TICKETS });
 
   axios
     .get(`https://devdeskqueue-be.herokuapp.com/api/tickets/admin/${id}`)
@@ -134,7 +134,7 @@ export const getAdminTickets = id => dispatch => {
 };
 
 export const getStudentTickets = id => dispatch => {
-  dispatch({ type: actionTypes.GETTING_STUDENT_TICKETS });
+  dispatch({ type: actionTypes.GETTING_TICKETS });
 
   axios
     .get(`https://devdeskqueue-be.herokuapp.com/api/tickets/student/${id}`)
