@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import actionTypes from '../actionTypes';
+import axiosImproved from '../axiosImproved';
 
 export const login = (username, password) => dispatch => {
   dispatch({ type: actionTypes.LOGIN_IN });
@@ -48,7 +49,7 @@ export const register = (
 export const getUsers = () => dispatch => {
   dispatch({ type: actionTypes.GETTING_USERS });
 
-  axios
+  axiosImproved()
     .get('https://devdeskqueue-be.herokuapp.com/api/users')
     .then(res => dispatch({ type: actionTypes.GET_USERS, payload: res.data }))
     .catch(err => {
@@ -60,7 +61,7 @@ export const getUsers = () => dispatch => {
 export const getTickets = () => dispatch => {
   dispatch({ type: actionTypes.GETTING_TICKETS });
 
-  axios
+  axiosImproved()
     .get('https://devdeskqueue-be.herokuapp.com/api/tickets')
     .then(res => dispatch({ type: actionTypes.GET_TICKETS, payload: res.data }))
     .catch(err => {
@@ -72,7 +73,7 @@ export const getTickets = () => dispatch => {
 export const createTicket = (title, description, category) => dispatch => {
   dispatch({ type: actionTypes.CREATING_TICKET });
 
-  axios
+  axiosImproved()
     .post('https://devdeskqueue-be.herokuapp.com/api/tickets', {
       title,
       description,
@@ -90,7 +91,7 @@ export const createTicket = (title, description, category) => dispatch => {
 export const deleteTicket = id => dispatch => {
   dispatch({ type: actionTypes.DELETING_TICKET });
 
-  axios
+  axiosImproved()
     .delete(`https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`)
     .then(res =>
       dispatch({ type: actionTypes.DELETE_TICKET, payload: res.data }),
@@ -104,7 +105,7 @@ export const deleteTicket = id => dispatch => {
 export const updateTicket = (id, title, description, category) => dispatch => {
   dispatch({ type: actionTypes.UPDATING_TICKET });
 
-  axios
+  axiosImproved()
     .put(`https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`, {
       title,
       description,
@@ -122,7 +123,7 @@ export const updateTicket = (id, title, description, category) => dispatch => {
 export const getAdminTickets = id => dispatch => {
   dispatch({ type: actionTypes.GETTING_TICKETS });
 
-  axios
+  axiosImproved()
     .get(`https://devdeskqueue-be.herokuapp.com/api/tickets/admin/${id}`)
     .then(res =>
       dispatch({ type: actionTypes.GET_ADMIN_TICKETS, payload: res.data }),
@@ -136,7 +137,7 @@ export const getAdminTickets = id => dispatch => {
 export const getStudentTickets = id => dispatch => {
   dispatch({ type: actionTypes.GETTING_TICKETS });
 
-  axios
+  axiosImproved()
     .get(`https://devdeskqueue-be.herokuapp.com/api/tickets/student/${id}`)
     .then(res =>
       dispatch({ type: actionTypes.GET_STUDENT_TICKETS, payload: res.data }),
