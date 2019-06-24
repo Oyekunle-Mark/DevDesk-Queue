@@ -34,7 +34,11 @@ Login.propTypes = {
   login: func.isRequired,
   loginIn: bool.isRequired,
   history: object.isRequired,
-  error: bool.isRequired,
+  error: bool,
+};
+
+Login.defaultProps = {
+  error: null,
 };
 
 const mapStateToProps = ({ user }) => ({

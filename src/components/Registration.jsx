@@ -49,7 +49,11 @@ Registration.propTypes = {
   register: func.isRequired,
   registering: bool.isRequired,
   history: object.isRequired,
-  error: bool.isRequired,
+  error: bool,
+};
+
+Registration.defaultProps = {
+  error: null,
 };
 
 const mapStateToProps = ({ user }) => ({
