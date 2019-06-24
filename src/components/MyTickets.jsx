@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, object, func, bool, number } from 'prop-types';
 
-import { getStudentTickets } from '../state/actionCreators';
+import { getStudentTickets, deleteTicket } from '../state/actionCreators';
 import Ticket from './Ticket';
 import StudentNav from './StudentNav';
 
@@ -12,12 +12,16 @@ const MyTickets = ({
   tickets,
   userId,
   getStudentTickets,
+  deleteTicket,
 }) => {
   useEffect(() => getStudentTickets(userId), []);
 
-  const studentsTickets = tickets.map(ticket => (
-    <Ticket key={ticket.id} {...ticket} />
-  ));
+  const studentsTickets = tickets.map(ticket => {
+    if (ticket.user_id === userId)
+      return (
+        <Ticket key={ticket.id} {...ticket} remove={deleteTicket} myTicket />
+      );
+  });
 
   return (
     <div>
@@ -35,6 +39,7 @@ MyTickets.propTypes = {
   tickets: arrayOf(object).isRequired,
   userId: number.isRequired,
   getStudentTickets: func.isRequired,
+  deleteTicket: func.isRequired,
 };
 
 MyTickets.defaultProps = {
@@ -50,5 +55,5 @@ const mapStateToProps = ({ user, ticket }) => ({
 
 export default connect(
   mapStateToProps,
-  { getStudentTickets },
+  { getStudentTickets, deleteTicket },
 )(MyTickets);
