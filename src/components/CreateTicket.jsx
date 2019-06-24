@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { func, bool, number } from 'prop-types';
+import { func, bool, number, object } from 'prop-types';
 
 import { createTicket } from '../state/actionCreators';
 import StudentNav from './StudentNav';
@@ -64,7 +64,7 @@ CreateTicket.propTypes = {
   creatingTicket: bool.isRequired,
   createTicket: func.isRequired,
   userId: number.isRequired,
-  history: func.isRequired,
+  history: object.isRequired,
   error: bool,
 };
 

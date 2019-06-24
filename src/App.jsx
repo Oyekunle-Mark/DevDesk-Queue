@@ -7,6 +7,7 @@ import Login from './components/Login';
 import WithAuth from './components/WithAuth';
 import StudentHome from './components/StudentHome';
 import CreateTicket from './components/CreateTicket';
+import MyTickets from './components/MyTickets';
 
 const App = () => (
   <Router>
@@ -16,6 +17,7 @@ const App = () => (
       <Route path="/login" render={props => <Login {...props} />} />
       <WithAuth path="/home" component={StudentHome} />
       <WithAuth path="/create_ticket" component={CreateTicket} />
+      <WithAuth path="/my_tickets" component={MyTickets} />
     </div>
   </Router>
 );

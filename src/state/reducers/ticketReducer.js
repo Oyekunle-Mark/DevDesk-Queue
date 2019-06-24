@@ -37,7 +37,7 @@ const ticketReducers = (state = initialState, action) => {
         updatingTicket: false,
       };
     case actionTypes.UPDATING_TICKET_TICKET:
-      return { ...state, updatingTicket: true };
+      return { ...state, updatingTicket: true, gettingTickets: false };
     case actionTypes.GET_ADMIN_TICKETS:
       return { ...state, tickets: action.payload };
     case actionTypes.GET_STUDENT_TICKETS:
