@@ -6,6 +6,7 @@ import Registration from './components/Registration';
 import Login from './components/Login';
 import WithAuth from './components/WithAuth';
 import StudentHome from './components/StudentHome';
+import CreateTicket from './components/CreateTicket';
 
 const App = () => (
   <Router>
@@ -14,6 +15,7 @@ const App = () => (
       <Route path="/join" render={props => <Registration {...props} />} />
       <Route path="/login" render={props => <Login {...props} />} />
       <WithAuth path="/home" component={StudentHome} />
+      <WithAuth path="/create_ticket" component={CreateTicket} />
     </div>
   </Router>
 );

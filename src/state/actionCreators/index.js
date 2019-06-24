@@ -76,21 +76,29 @@ export const getTickets = () => dispatch => {
     });
 };
 
-export const createTicket = (title, description, category) => dispatch => {
+export const createTicket = (
+  title,
+  description,
+  category,
+  userId,
+) => dispatch => {
   dispatch({ type: actionTypes.CREATING_TICKET });
 
-  axiosImproved()
+  return axiosImproved()
     .post('https://devdeskqueue-be.herokuapp.com/api/tickets', {
       title,
       description,
       category,
+      user_id: userId,
     })
-    .then(res =>
-      dispatch({ type: actionTypes.CREATE_TICKET, payload: res.data }),
-    )
+    .then(res => {
+      dispatch({ type: actionTypes.CREATE_TICKET, payload: res.data });
+      return res;
+    })
     .catch(err => {
       console.log(err.message);
       dispatch({ type: actionTypes.TICKET_ERROR });
+      return err;
     });
 };
 
