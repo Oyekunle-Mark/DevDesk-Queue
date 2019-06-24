@@ -6,15 +6,19 @@ import axiosImproved from '../axiosImproved';
 export const login = (username, password) => dispatch => {
   dispatch({ type: actionTypes.LOGIN_IN });
 
-  axios
+  return axios
     .post('https://devdeskqueue-be.herokuapp.com/api/login', {
       username,
       password,
     })
-    .then(res => dispatch({ type: actionTypes.LOGIN, payload: res.data }))
+    .then(res => {
+      dispatch({ type: actionTypes.LOGIN, payload: res.data });
+      return res;
+    })
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.AUTH_ERROR });
+      return err;
     });
 };
 
@@ -24,25 +28,27 @@ export const register = (
   username,
   password,
   email,
-  isAdmin,
   cohort,
 ) => dispatch => {
   dispatch({ type: actionTypes.REGISTERING });
 
-  axios
+  return axios
     .post('https://devdeskqueue-be.herokuapp.com/api/register', {
       firstname,
       lastname,
       username,
       password,
       email,
-      isAdmin,
       cohort,
     })
-    .then(res => dispatch({ type: actionTypes.REGISTER, payload: res.data }))
+    .then(res => {
+      dispatch({ type: actionTypes.REGISTER, payload: res.data });
+      return res;
+    })
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.AUTH_ERROR });
+      return err;
     });
 };
 
@@ -54,7 +60,7 @@ export const getUsers = () => dispatch => {
     .then(res => dispatch({ type: actionTypes.GET_USERS, payload: res.data }))
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.AUTH_ERROR });
     });
 };
 
@@ -66,25 +72,33 @@ export const getTickets = () => dispatch => {
     .then(res => dispatch({ type: actionTypes.GET_TICKETS, payload: res.data }))
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };
 
-export const createTicket = (title, description, category) => dispatch => {
+export const createTicket = (
+  title,
+  description,
+  category,
+  userId,
+) => dispatch => {
   dispatch({ type: actionTypes.CREATING_TICKET });
 
-  axiosImproved()
+  return axiosImproved()
     .post('https://devdeskqueue-be.herokuapp.com/api/tickets', {
       title,
       description,
       category,
+      user_id: userId,
     })
-    .then(res =>
-      dispatch({ type: actionTypes.CREATE_TICKET, payload: res.data }),
-    )
+    .then(res => {
+      dispatch({ type: actionTypes.CREATE_TICKET, payload: res.data });
+      return res;
+    })
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
+      return err;
     });
 };
 
@@ -98,7 +112,7 @@ export const deleteTicket = id => dispatch => {
     )
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };
 
@@ -116,7 +130,7 @@ export const updateTicket = (id, title, description, category) => dispatch => {
     )
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };
 
@@ -130,7 +144,7 @@ export const getAdminTickets = id => dispatch => {
     )
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };
 
@@ -144,6 +158,6 @@ export const getStudentTickets = id => dispatch => {
     )
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };
