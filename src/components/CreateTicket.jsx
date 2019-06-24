@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { func, bool, number } from 'prop-types';
 
 import { createTicket } from '../state/actionCreators';
 import StudentNav from './StudentNav';
@@ -57,6 +58,18 @@ const CreateTicket = ({
       {error && <h4>Error</h4>}
     </div>
   );
+};
+
+CreateTicket.propTypes = {
+  creatingTicket: bool.isRequired,
+  createTicket: func.isRequired,
+  userId: number.isRequired,
+  history: func.isRequired,
+  error: bool,
+};
+
+CreateTicket.defaultProps = {
+  error: null,
 };
 
 const mapStateToProps = ({ user, ticket }) => ({
