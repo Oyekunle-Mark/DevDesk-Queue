@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { arrayOf, object, func, bool } from 'prop-types';
+import { arrayOf, object, func, bool, number } from 'prop-types';
 
 import { getStudentTickets } from '../state/actionCreators';
 import Ticket from './Ticket';
@@ -27,6 +27,18 @@ const MyTickets = ({
       {studentsTickets}
     </div>
   );
+};
+
+MyTickets.propTypes = {
+  gettingTickets: bool.isRequired,
+  error: bool,
+  tickets: arrayOf(object).isRequired,
+  userId: number.isRequired,
+  getStudentTickets: func.isRequired,
+};
+
+MyTickets.defaultProps = {
+  error: null,
 };
 
 const mapStateToProps = ({ user, ticket }) => ({
