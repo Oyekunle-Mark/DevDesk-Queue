@@ -1,10 +1,10 @@
 import React, { createRef } from 'react';
-import { func, bool } from 'prop-types';
+import { func, bool, object } from 'prop-types';
 import { connect } from 'react-redux';
 
 import { register } from '../state/actionCreators';
 
-const Registration = ({ register, registering }) => {
+const Registration = ({ register, registering, history }) => {
   const firstname = createRef();
   const lastname = createRef();
   const username = createRef();
@@ -22,7 +22,7 @@ const Registration = ({ register, registering }) => {
       password.current.value,
       email.current.value,
       cohort.current.value,
-    );
+    ).then(() => history.push('/login'));
   };
 
   return (
@@ -43,6 +43,7 @@ const Registration = ({ register, registering }) => {
 Registration.propTypes = {
   register: func.isRequired,
   registering: bool.isRequired,
+  history: object.isRequired,
 };
 
 const mapStateToProps = ({ user }) => ({
