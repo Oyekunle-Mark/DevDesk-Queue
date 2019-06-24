@@ -24,19 +24,17 @@ export const register = (
   username,
   password,
   email,
-  isAdmin,
   cohort,
 ) => dispatch => {
   dispatch({ type: actionTypes.REGISTERING });
 
-  axios
+  return axios
     .post('https://devdeskqueue-be.herokuapp.com/api/register', {
       firstname,
       lastname,
       username,
       password,
       email,
-      isAdmin,
       cohort,
     })
     .then(res => dispatch({ type: actionTypes.REGISTER, payload: res.data }))
