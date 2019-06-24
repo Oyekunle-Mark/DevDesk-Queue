@@ -6,7 +6,7 @@ const initialState = {
   registering: false,
   loginIn: false,
   gettingUsers: false,
-  error: null,
+  error: false,
 };
 
 const authReducer = (state = initialState, action) => {

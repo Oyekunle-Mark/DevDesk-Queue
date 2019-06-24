@@ -6,15 +6,19 @@ import axiosImproved from '../axiosImproved';
 export const login = (username, password) => dispatch => {
   dispatch({ type: actionTypes.LOGIN_IN });
 
-  axios
+  return axios
     .post('https://devdeskqueue-be.herokuapp.com/api/login', {
       username,
       password,
     })
-    .then(res => dispatch({ type: actionTypes.LOGIN, payload: res.data }))
+    .then(res => {
+      dispatch({ type: actionTypes.LOGIN, payload: res.data });
+      return res;
+    })
     .catch(err => {
       console.log(err.message);
       dispatch({ type: actionTypes.AUTH_ERROR });
+      return err;
     });
 };
 
@@ -37,10 +41,14 @@ export const register = (
       email,
       cohort,
     })
-    .then(res => dispatch({ type: actionTypes.REGISTER, payload: res.data }))
+    .then(res => {
+      dispatch({ type: actionTypes.REGISTER, payload: res.data });
+      return res;
+    })
     .catch(err => {
       console.log(err.message);
       dispatch({ type: actionTypes.AUTH_ERROR });
+      return err;
     });
 };
 
