@@ -14,7 +14,7 @@ export const login = (username, password) => dispatch => {
     .then(res => dispatch({ type: actionTypes.LOGIN, payload: res.data }))
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.AUTH_ERROR });
     });
 };
 
@@ -40,7 +40,7 @@ export const register = (
     .then(res => dispatch({ type: actionTypes.REGISTER, payload: res.data }))
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.AUTH_ERROR });
     });
 };
 
@@ -52,7 +52,7 @@ export const getUsers = () => dispatch => {
     .then(res => dispatch({ type: actionTypes.GET_USERS, payload: res.data }))
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.AUTH_ERROR });
     });
 };
 
@@ -64,7 +64,7 @@ export const getTickets = () => dispatch => {
     .then(res => dispatch({ type: actionTypes.GET_TICKETS, payload: res.data }))
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };
 
@@ -82,7 +82,7 @@ export const createTicket = (title, description, category) => dispatch => {
     )
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };
 
@@ -96,7 +96,7 @@ export const deleteTicket = id => dispatch => {
     )
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };
 
@@ -114,7 +114,7 @@ export const updateTicket = (id, title, description, category) => dispatch => {
     )
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };
 
@@ -128,7 +128,7 @@ export const getAdminTickets = id => dispatch => {
     )
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };
 
@@ -142,6 +142,6 @@ export const getStudentTickets = id => dispatch => {
     )
     .catch(err => {
       console.log(err.message);
-      dispatch({ type: actionTypes.ERROR });
+      dispatch({ type: actionTypes.TICKET_ERROR });
     });
 };

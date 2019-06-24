@@ -45,7 +45,7 @@ const ticketReducers = (state = initialState, action) => {
         ...state,
         tickets: action.payload,
       };
-    case actionTypes.ERROR:
+    case actionTypes.TICKET_ERROR:
       return {
         ...state,
         gettingTickets: false,

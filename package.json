@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev-server": "live-server",
+    "dev-server": "webpack-dev-server --open",
     "build": "webpack --watch"
   },
   "keywords": [],
@@ -22,10 +22,10 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "live-server": "^1.2.1",
     "style-loader": "^0.23.1",
     "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2"
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.5.1"
   },
   "dependencies": {
     "axios": "^0.19.0",

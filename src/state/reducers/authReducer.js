@@ -6,6 +6,7 @@ const initialState = {
   registering: false,
   loginIn: false,
   gettingUsers: false,
+  error: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -22,6 +23,14 @@ const authReducer = (state = initialState, action) => {
       return { ...state, users: action.payload, gettingUsers: false };
     case actionTypes.GETTING_USERS:
       return { ...state, gettingUsers: true };
+    case actionTypes.AUTH_ERROR:
+      return {
+        ...state,
+        error: true,
+        registering: false,
+        loginIn: false,
+        gettingUsers: false,
+      };
     default:
       return state;
   }
