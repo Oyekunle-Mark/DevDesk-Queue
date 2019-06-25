@@ -71,10 +71,9 @@ CreateTicket.defaultProps = {
   error: null,
 };
 
-const mapStateToProps = ({ user, ticket }) => ({
+const mapStateToProps = ({ ticket }) => ({
   creatingTicket: ticket.creatingTicket,
   error: ticket.error,
-  userId: user.user.user_id,
 });
 
 export default connect(

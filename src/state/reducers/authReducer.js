@@ -2,7 +2,6 @@ import actionTypes from '../actionTypes';
 
 const initialState = {
   users: [],
-  user: {},
   registering: false,
   loginIn: false,
   gettingUsers: false,
@@ -16,7 +15,7 @@ const authReducer = (state = initialState, action) => {
     case actionTypes.REGISTERING:
       return { ...state, registering: true };
     case actionTypes.LOGIN:
-      return { ...state, user: action.payload.user, loginIn: false };
+      return { ...state, loginIn: false };
     case actionTypes.LOGIN_IN:
       return { ...state, loginIn: true };
     case actionTypes.GET_USERS:

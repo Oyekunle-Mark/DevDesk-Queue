@@ -81,12 +81,11 @@ MyTickets.defaultProps = {
   error: null,
 };
 
-const mapStateToProps = ({ user, ticket }) => ({
+const mapStateToProps = ({ ticket }) => ({
   gettingTickets: ticket.gettingTickets,
   updatingTicket: ticket.updatingTicket,
   error: ticket.error,
   tickets: ticket.tickets,
-  userId: user.user.user_id,
 });
 
 export default connect(
