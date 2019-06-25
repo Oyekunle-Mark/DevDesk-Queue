@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, object, func, bool, number } from 'prop-types';
 
-import { getStudentTickets, deleteTicket } from '../state/actionCreators';
+import {
+  getStudentTickets,
+  deleteTicket,
+  updateTicket,
+} from '../state/actionCreators';
 import Ticket from './Ticket';
 import StudentNav from './StudentNav';
+import UpdateTicket from './UpdateTicket';
 
 const MyTickets = ({
   gettingTickets,
@@ -13,13 +18,40 @@ const MyTickets = ({
   userId,
   getStudentTickets,
   deleteTicket,
+  updateTicket,
+  updatingTicket,
+  history,
 }) => {
+  const [editing, setEditing] = useState(0);
+
   useEffect(() => getStudentTickets(userId), []);
+
+  const toggleEditing = id => {
+    if (editing === id) setEditing(0);
+    else setEditing(id);
+  };
 
   const studentsTickets = tickets.map(ticket => {
     if (ticket.user_id === userId)
       return (
-        <Ticket key={ticket.id} {...ticket} remove={deleteTicket} myTicket />
+        <div key={ticket.id}>
+          <button onClick={() => toggleEditing(ticket.id)}>
+            {editing === ticket.id ? 'Cancel' : 'Edit'}
+          </button>
+          {editing !== ticket.id ? (
+            <Ticket {...ticket} remove={deleteTicket} myTicket />
+          ) : null}
+          {editing === ticket.id ? (
+            <UpdateTicket
+              {...ticket}
+              error={error}
+              history={history}
+              updateTicket={updateTicket}
+              updatingTicket={updatingTicket}
+              removeEditing={setEditing}
+            />
+          ) : null}
+        </div>
       );
   });
 
@@ -40,6 +72,9 @@ MyTickets.propTypes = {
   userId: number.isRequired,
   getStudentTickets: func.isRequired,
   deleteTicket: func.isRequired,
+  updateTicket: func.isRequired,
+  updatingTicket: bool.isRequired,
+  history: object.isRequired,
 };
 
 MyTickets.defaultProps = {
@@ -48,6 +83,7 @@ MyTickets.defaultProps = {
 
 const mapStateToProps = ({ user, ticket }) => ({
   gettingTickets: ticket.gettingTickets,
+  updatingTicket: ticket.updatingTicket,
   error: ticket.error,
   tickets: ticket.tickets,
   userId: user.user.user_id,
@@ -55,5 +91,5 @@ const mapStateToProps = ({ user, ticket }) => ({
 
 export default connect(
   mapStateToProps,
-  { getStudentTickets, deleteTicket },
+  { getStudentTickets, deleteTicket, updateTicket },
 )(MyTickets);
