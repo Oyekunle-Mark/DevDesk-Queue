@@ -10,6 +10,7 @@ const Registration = ({ register, registering, history, error }) => {
   const username = createRef();
   const password = createRef();
   const email = createRef();
+  const isAdmin = createRef();
   const cohort = createRef();
 
   const handleRegistration = e => {
@@ -21,6 +22,7 @@ const Registration = ({ register, registering, history, error }) => {
       username.current.value,
       password.current.value,
       email.current.value,
+      isAdmin.current.value,
       cohort.current.value,
     ).then(res => {
       if (res.status === 200) history.push('/login');
@@ -35,9 +37,16 @@ const Registration = ({ register, registering, history, error }) => {
         <input type="text" placeholder="firstname" ref={firstname} />
         <input type="text" placeholder="lastname" ref={lastname} />
         <input type="text" placeholder="username" ref={username} />
-        <input type="text" placeholder="password" ref={password} />
+        <input type="password" placeholder="password" ref={password} />
         <input type="email" placeholder="email" ref={email} />
         <input type="text" placeholder="cohort" ref={cohort} />
+        <label>
+          User type:
+          <select ref={isAdmin}>
+            <option value={0}>Student</option>
+            <option value={1}>Helper</option>
+          </select>
+        </label>
         <button type="submit">Submit {registering && 'Loading...'}</button>
       </form>
       {error && <h4>Error</h4>}

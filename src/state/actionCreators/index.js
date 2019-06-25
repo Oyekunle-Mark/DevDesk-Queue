@@ -28,6 +28,7 @@ export const register = (
   username,
   password,
   email,
+  isAdmin,
   cohort,
 ) => dispatch => {
   dispatch({ type: actionTypes.REGISTERING });
@@ -38,6 +39,7 @@ export const register = (
       lastname,
       username,
       password,
+      isAdmin,
       email,
       cohort,
     })
