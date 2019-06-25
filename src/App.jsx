@@ -8,6 +8,8 @@ import WithAuth from './components/WithAuth';
 import StudentHome from './components/studentComponents/StudentHome';
 import CreateTicket from './components/studentComponents/CreateTicket';
 import MyTickets from './components/studentComponents/MyTickets';
+import HelperHome from './components/helperComponents/HelperHome';
+import ManageTickets from './components/helperComponents/ManageTickets';
 
 const App = () => (
   <Router>
@@ -18,6 +20,9 @@ const App = () => (
       <WithAuth path="/home" component={StudentHome} />
       <WithAuth path="/create_ticket" component={CreateTicket} />
       <WithAuth path="/my_tickets" component={MyTickets} />
+
+      <WithAuth path="/helper" component={HelperHome} />
+      <WithAuth path="/manage_tickets" component={ManageTickets} />
     </div>
   </Router>
 );
