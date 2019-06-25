@@ -6,7 +6,8 @@ import {
   getStudentTickets,
   deleteTicket,
   updateTicket,
-} from '../../state/actionCreators';
+} from '../../state/actionCreators/ticketActionCreators';
+
 import Ticket from './Ticket';
 import StudentNav from './StudentNav';
 import UpdateTicket from './UpdateTicket';

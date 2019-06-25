@@ -2,7 +2,7 @@ import React, { createRef } from 'react';
 import { func, bool, object } from 'prop-types';
 import { connect } from 'react-redux';
 
-import { login } from '../state/actionCreators';
+import { login } from '../state/actionCreators/authActionCreators';
 
 const Login = ({ login, loginIn, history, error }) => {
   const username = createRef();

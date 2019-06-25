@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { func, arrayOf, object, bool } from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getTickets, updateHelperTicket } from '../../state/actionCreators';
+import { getTickets } from '../../state/actionCreators/ticketActionCreators';
+import { updateHelperTicket } from '../../state/actionCreators/helperTicketActionCreators';
 
 import HelperNav from './HelperNav';
 import HelperTicket from './HelperTicket';

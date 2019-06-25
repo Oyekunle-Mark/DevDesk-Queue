@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {
   getAdminTickets,
   updateHelperTicket,
-} from '../../state/actionCreators';
+} from '../../state/actionCreators/helperTicketActionCreators';
 import HelperNav from './HelperNav';
 import HelperTicket from './HelperTicket';
 

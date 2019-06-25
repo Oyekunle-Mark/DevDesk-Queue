@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { func, bool, object } from 'prop-types';
 
-import { createTicket } from '../../state/actionCreators';
+import { createTicket } from '../../state/actionCreators/ticketActionCreators';
 import StudentNav from './StudentNav';
 
 const CreateTicket = ({
