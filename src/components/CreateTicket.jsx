@@ -28,7 +28,6 @@ const CreateTicket = ({
         if (res.status === 201) history.push('/home');
       },
     );
-    console.log(titleValue, descriptionValue, categoryValue, userId);
   };
   return (
     <div>
