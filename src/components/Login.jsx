@@ -12,7 +12,10 @@ const Login = ({ login, loginIn, history, error }) => {
     e.preventDefault();
 
     login(username.current.value, password.current.value).then(res => {
-      if (res.status === 200) history.push('/home');
+      if (res.status === 200) {
+        if (res.data.user.isAdmin === 1) history.push('/helper');
+        else history.push('/home');
+      }
     });
   };
 
