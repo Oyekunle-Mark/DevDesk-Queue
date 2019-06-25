@@ -119,18 +119,20 @@ export const deleteTicket = id => dispatch => {
 export const updateTicket = (id, title, description, category) => dispatch => {
   dispatch({ type: actionTypes.UPDATING_TICKET });
 
-  axiosImproved()
+  return axiosImproved()
     .put(`https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`, {
       title,
       description,
       category,
     })
-    .then(res =>
-      dispatch({ type: actionTypes.UPDATE_TICKET, payload: res.data }),
-    )
+    .then(res => {
+      dispatch({ type: actionTypes.UPDATE_TICKET, payload: res.data });
+      return res;
+    })
     .catch(err => {
       console.log(err.message);
       dispatch({ type: actionTypes.TICKET_ERROR });
+      return err;
     });
 };
 
