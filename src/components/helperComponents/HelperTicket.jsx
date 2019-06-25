@@ -9,6 +9,8 @@ const HelperTicket = ({
   resolved,
   assignToSelf,
   assign,
+  reAssign,
+  update,
 }) => {
   const userId = JSON.parse(localStorage.getItem('DevDeskAuth')).user.user_id;
 
@@ -24,6 +26,8 @@ const HelperTicket = ({
           Help Student
         </button>
       )}
+      {reAssign && <button onClick={() => update(id, 1, 1, userId)}>Resolved</button>}
+      {reAssign && <button onClick={() => update(id, 0, 0, 0)}>Return to Queue</button>}
     </div>
   );
 };
@@ -36,11 +40,15 @@ HelperTicket.propTypes = {
   assignToSelf: func,
   assign: bool,
   resolved: number.isRequired,
+  reAssign: bool,
+  update: func,
 };
 
 HelperTicket.defaultProps = {
   assignToSelf: f => f,
   assign: false,
+  reAssign: false,
+  update: f => f,
 };
 
 export default HelperTicket;
