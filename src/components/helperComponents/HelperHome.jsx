@@ -23,7 +23,7 @@ const HelperHome = ({
         <HelperTicket
           key={ticket.id}
           {...ticket}
-          helper
+          assign
           assignToSelf={updateHelperTicket}
         />
       );

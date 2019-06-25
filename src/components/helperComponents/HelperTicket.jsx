@@ -8,7 +8,7 @@ const HelperTicket = ({
   description,
   resolved,
   assignToSelf,
-  helper,
+  assign,
 }) => {
   const userId = JSON.parse(localStorage.getItem('DevDeskAuth')).user.user_id;
 
@@ -17,7 +17,7 @@ const HelperTicket = ({
       <p>{title}</p>
       <p>{category}</p>
       <p>{description}</p>
-      {helper && (
+      {assign && (
         <button
           onClick={() => assignToSelf(id, resolved, 1, userId)}
         >
@@ -34,13 +34,13 @@ HelperTicket.propTypes = {
   category: string.isRequired,
   description: string.isRequired,
   assignToSelf: func,
-  helper: bool,
+  assign: bool,
   resolved: number.isRequired,
 };
 
 HelperTicket.defaultProps = {
   assignToSelf: f => f,
-  helper: false,
+  assign: false,
 };
 
 export default HelperTicket;
