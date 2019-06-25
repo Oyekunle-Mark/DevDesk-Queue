@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { arrayOf, object, func, bool, number } from 'prop-types';
+import { arrayOf, object, func, bool } from 'prop-types';
 
 import {
   getStudentTickets,
@@ -15,7 +15,6 @@ const MyTickets = ({
   gettingTickets,
   error,
   tickets,
-  userId,
   getStudentTickets,
   deleteTicket,
   updateTicket,
@@ -23,6 +22,8 @@ const MyTickets = ({
   history,
 }) => {
   const [editing, setEditing] = useState(0);
+
+  const userId = JSON.parse(localStorage.getItem('DevDeskAuth')).user.user_id;
 
   useEffect(() => getStudentTickets(userId), []);
 
@@ -69,7 +70,6 @@ MyTickets.propTypes = {
   gettingTickets: bool.isRequired,
   error: bool,
   tickets: arrayOf(object).isRequired,
-  userId: number.isRequired,
   getStudentTickets: func.isRequired,
   deleteTicket: func.isRequired,
   updateTicket: func.isRequired,

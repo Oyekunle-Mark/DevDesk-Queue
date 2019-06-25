@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 export default () => {
-  const token = localStorage.getItem('DevDeskToken')
-    ? localStorage.getItem('DevDeskToken')
+  const token = JSON.parse(localStorage.getItem('DevDeskAuth'))
+    ? JSON.parse(localStorage.getItem('DevDeskAuth')).token
     : 'not logged in';
 
   return axios.create({

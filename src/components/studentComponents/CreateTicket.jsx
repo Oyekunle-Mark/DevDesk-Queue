@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { func, bool, number, object } from 'prop-types';
+import { func, bool, object } from 'prop-types';
 
 import { createTicket } from '../../state/actionCreators';
 import StudentNav from './StudentNav';
@@ -9,12 +9,13 @@ const CreateTicket = ({
   createTicket,
   creatingTicket,
   error,
-  userId,
   history,
 }) => {
   const [titleValue, updateValue] = useState('');
   const [descriptionValue, updateDescription] = useState('');
   const [categoryValue, updateCategory] = useState('');
+
+  const userId = JSON.parse(localStorage.getItem('DevDeskAuth')).user.user_id;
 
   const changeTitle = e => updateValue(e.target.value);
   const changeDescription = e => updateDescription(e.target.value);
@@ -62,7 +63,6 @@ const CreateTicket = ({
 CreateTicket.propTypes = {
   creatingTicket: bool.isRequired,
   createTicket: func.isRequired,
-  userId: number.isRequired,
   history: object.isRequired,
   error: bool,
 };
