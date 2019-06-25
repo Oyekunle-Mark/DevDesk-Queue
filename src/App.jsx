@@ -5,9 +5,9 @@ import LandingPage from './components/LandingPage';
 import Registration from './components/Registration';
 import Login from './components/Login';
 import WithAuth from './components/WithAuth';
-import StudentHome from './components/StudentHome';
-import CreateTicket from './components/CreateTicket';
-import MyTickets from './components/MyTickets';
+import StudentHome from './components/studentComponents/StudentHome';
+import CreateTicket from './components/studentComponents/CreateTicket';
+import MyTickets from './components/studentComponents/MyTickets';
 
 const App = () => (
   <Router>

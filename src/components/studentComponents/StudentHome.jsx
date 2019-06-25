@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, object, func, bool } from 'prop-types';
 
-import { getTickets } from '../state/actionCreators';
+import { getTickets } from '../../state/actionCreators';
 import Ticket from './Ticket';
 import StudentNav from './StudentNav';
 
