@@ -1,68 +1,5 @@
-import axios from 'axios';
-
 import actionTypes from '../actionTypes';
 import axiosImproved from '../axiosImproved';
-
-export const login = (username, password) => dispatch => {
-  dispatch({ type: actionTypes.LOGIN_IN });
-
-  return axios
-    .post('https://devdeskqueue-be.herokuapp.com/api/login', {
-      username,
-      password,
-    })
-    .then(res => {
-      dispatch({ type: actionTypes.LOGIN, payload: res.data });
-      return res;
-    })
-    .catch(err => {
-      console.log(err.message);
-      dispatch({ type: actionTypes.AUTH_ERROR });
-      return err;
-    });
-};
-
-export const register = (
-  firstname,
-  lastname,
-  username,
-  password,
-  email,
-  cohort,
-) => dispatch => {
-  dispatch({ type: actionTypes.REGISTERING });
-
-  return axios
-    .post('https://devdeskqueue-be.herokuapp.com/api/register', {
-      firstname,
-      lastname,
-      username,
-      password,
-      email,
-      cohort,
-    })
-    .then(res => {
-      dispatch({ type: actionTypes.REGISTER, payload: res.data });
-      return res;
-    })
-    .catch(err => {
-      console.log(err.message);
-      dispatch({ type: actionTypes.AUTH_ERROR });
-      return err;
-    });
-};
-
-export const getUsers = () => dispatch => {
-  dispatch({ type: actionTypes.GETTING_USERS });
-
-  axiosImproved()
-    .get('https://devdeskqueue-be.herokuapp.com/api/users')
-    .then(res => dispatch({ type: actionTypes.GET_USERS, payload: res.data }))
-    .catch(err => {
-      console.log(err.message);
-      dispatch({ type: actionTypes.AUTH_ERROR });
-    });
-};
 
 export const getTickets = () => dispatch => {
   dispatch({ type: actionTypes.GETTING_TICKETS });
@@ -119,32 +56,20 @@ export const deleteTicket = id => dispatch => {
 export const updateTicket = (id, title, description, category) => dispatch => {
   dispatch({ type: actionTypes.UPDATING_TICKET });
 
-  axiosImproved()
+  return axiosImproved()
     .put(`https://devdeskqueue-be.herokuapp.com/api/tickets/${id}`, {
       title,
       description,
       category,
     })
-    .then(res =>
-      dispatch({ type: actionTypes.UPDATE_TICKET, payload: res.data }),
-    )
+    .then(res => {
+      dispatch({ type: actionTypes.UPDATE_TICKET, payload: res.data });
+      return res;
+    })
     .catch(err => {
       console.log(err.message);
       dispatch({ type: actionTypes.TICKET_ERROR });
-    });
-};
-
-export const getAdminTickets = id => dispatch => {
-  dispatch({ type: actionTypes.GETTING_TICKETS });
-
-  axiosImproved()
-    .get(`https://devdeskqueue-be.herokuapp.com/api/tickets/admin/${id}`)
-    .then(res =>
-      dispatch({ type: actionTypes.GET_ADMIN_TICKETS, payload: res.data }),
-    )
-    .catch(err => {
-      console.log(err.message);
-      dispatch({ type: actionTypes.TICKET_ERROR });
+      return err;
     });
 };
 

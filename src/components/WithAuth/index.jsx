@@ -6,7 +6,7 @@ const WithAuth = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      localStorage.getItem('DevDeskToken') ? (
+      localStorage.getItem('DevDeskAuth') ? (
         <Component {...props} />
       ) : (
         <Redirect to="/login" />
