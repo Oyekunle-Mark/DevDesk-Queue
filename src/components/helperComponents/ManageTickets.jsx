@@ -2,17 +2,34 @@ import React, { useEffect } from 'react';
 import { arrayOf, object, bool, func } from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getAdminTickets } from '../../state/actionCreators';
+import {
+  getAdminTickets,
+  updateHelperTicket,
+} from '../../state/actionCreators';
 import HelperNav from './HelperNav';
 import HelperTicket from './HelperTicket';
 
-const ManageTickets = ({ tickets, gettingTickets, error, getAdminTickets }) => {
+const ManageTickets = ({
+  tickets,
+  gettingTickets,
+  error,
+  getAdminTickets,
+  updateHelperTicket,
+}) => {
   const userId = JSON.parse(localStorage.getItem('DevDeskAuth')).user.user_id;
 
   useEffect(() => getAdminTickets(userId), []);
 
   const myTicketList = tickets.map(ticket => {
-    if (ticket.assigned_user === userId) return <HelperTicket key={ticket.id} {...ticket} />;
+    if (ticket.assigned_user === userId && ticket.resolved === 0)
+      return (
+        <HelperTicket
+          key={ticket.id}
+          {...ticket}
+          update={updateHelperTicket}
+          reAssign
+        />
+      );
   });
 
   return (
@@ -30,6 +47,7 @@ ManageTickets.propTypes = {
   gettingTickets: bool.isRequired,
   error: bool,
   getAdminTickets: func.isRequired,
+  updateHelperTicket: func.isRequired,
 };
 
 ManageTickets.defaultProps = {
@@ -44,5 +62,5 @@ const mapStateToProps = ({ ticket }) => ({
 
 export default connect(
   mapStateToProps,
-  { getAdminTickets },
+  { getAdminTickets, updateHelperTicket },
 )(ManageTickets);
