@@ -1,13 +1,62 @@
 import React from 'react';
 import { string, func, number, bool } from 'prop-types';
+import styled from 'styled-components';
+
+const StyledTicket = styled.div`
+  width: 300px;
+  background: #ffffff;
+  color: #212529;
+  padding: 15px;
+  border-radius: 4px;
+  margin: 20px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  div h3 {
+    font-size: 25px;
+    margin-bottom: 5px;
+  }
+
+  div img {
+    width: 20px;
+    height: 20px;
+  }
+
+  div img:hover {
+    cursor: pointer;
+  }
+
+  p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  p span {
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+  }
+`;
 
 const Ticket = ({ id, title, category, description, remove, myTicket }) => (
-  <div>
-    <p>{title}</p>
-    <p>{category}</p>
+  <StyledTicket>
+    <div>
+      <h3>{title}</h3>
+      {myTicket && (
+        <img
+          src="../../../assets/delete.svg"
+          alt="delete"
+          onClick={() => remove(id)}
+        />
+      )}
+    </div>
     <p>{description}</p>
-    {myTicket && <button onClick={() => remove(id)}>Delete</button>}
-  </div>
+    <p><span>Category: {category}</span></p>
+  </StyledTicket>
 );
 
 Ticket.propTypes = {
