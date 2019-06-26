@@ -1,11 +1,65 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledHelperNav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: #101822;
+  padding: 7px 15px;
+  border-bottom: 1px solid #777777;
+  margin-bottom: 20px;
+
+  div {
+    display: flex;
+    align-items: center;
+  }
+
+  div img {
+    width: 50px;
+    height: 50px;
+  }
+
+  div h1 {
+    font-size: 20px;
+  }
+
+  div a {
+    margin: 0 10px;
+    font-size: 14px;
+  }
+
+  div a:hover {
+    text-decoration: underline;
+  }
+
+  .selected {
+    color: #b6b6b6;
+    font-weight: bold;
+  }
+`;
 
 const HelperNav = () => (
-  <nav>
-    <NavLink to="/helper">Open Tickets</NavLink>
-    <NavLink to="/manage_tickets">Manage Tickets</NavLink>
-  </nav>
+  <StyledHelperNav>
+    <Link to="/helper">
+      <div>
+        <img src="../../assets/dev.svg" alt="logo" />
+
+        <h1>DevDesk</h1>
+      </div>
+    </Link>
+
+    <div>
+      <NavLink to="/helper" activeClassName="selected">
+        Open Tickets
+      </NavLink>
+      <NavLink to="/manage_tickets" activeClassName="selected">
+        Manage Tickets
+      </NavLink>
+    </div>
+  </StyledHelperNav>
 );
 
 export default HelperNav;
