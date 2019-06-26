@@ -17,13 +17,13 @@ const Registration = ({ register, registering, history, error }) => {
     e.preventDefault();
 
     register(
-      firstname.current.value,
-      lastname.current.value,
-      username.current.value,
-      password.current.value,
-      email.current.value,
-      isAdmin.current.value,
-      cohort.current.value,
+      firstname,
+      lastname,
+      username,
+      password,
+      email,
+      isAdmin,
+      cohort,
     ).then(res => {
       if (res.status === 200) history.push('/login');
     });
