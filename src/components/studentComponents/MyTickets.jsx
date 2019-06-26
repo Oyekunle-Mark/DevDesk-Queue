@@ -23,9 +23,9 @@ const StyledTicket = styled.div`
   border-right: 0;
   border-bottom: 0;
   border-left: ${props =>
-    props.color ? '1px solid #25b6d2' : '1px solid #e76e54'};
+    props.color ? '1px solid #2cbe4e' : '1px solid #e76e54'};
   border-top: ${props =>
-    props.color ? '1px solid #25b6d2' : '1px solid #e76e54'};
+    props.color ? '1px solid #2cbe4e' : '1px solid #e76e54'};
   margin: 15px;
 
   img {
