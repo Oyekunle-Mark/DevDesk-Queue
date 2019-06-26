@@ -1,9 +1,86 @@
 import React, { useState } from 'react';
 import { func, bool, object } from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { register } from '../state/actionCreators/authActionCreators';
 import Header from './Header';
+
+const StyledRegistration = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 30px;
+    margin: auto;
+    margin-top: 30px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    width: 350px;
+    margin: auto;
+    padding: 30px;
+    background: #fdfdfd;
+    color: #212529;
+    border-radius: 5px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+
+  h4 {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  label {
+    margin: 10px 0;
+  }
+
+  label p {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  label p span {
+    color: red;
+  }
+
+  label input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+    width: 95%;
+    height: 20px;
+    font-size: 14px;
+    color: #777777;
+    background: #fafafa;
+    padding: 10px;
+    margin: 3px 0;
+    border: 2px solid #e3e3e3;
+    border-radius: 3px;
+  }
+
+  label input[type='radio'] {
+    margin: 10px;
+  }
+
+  button {
+    background: #55b95a;
+    color: #fdfdfd;
+    font-size: 15px;
+    width: 100%;
+    height: 40px;
+    border: 1px solid #55b95a;
+    border-radius: 3px;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+`;
 
 const Registration = ({ register, registering, history, error }) => {
   const [firstname, updateFirstname] = useState('');
@@ -31,48 +108,74 @@ const Registration = ({ register, registering, history, error }) => {
   };
 
   return (
-    <div>
+    <StyledRegistration>
       <Header />
-      <h3>Register</h3>
+      <h2>Register</h2>
 
       <form onSubmit={handleRegistration}>
-        <input
-          type="text"
-          placeholder="firstname"
-          value={firstname}
-          onChange={e => updateFirstname(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="lastname"
-          value={lastname}
-          onChange={e => updateLastname(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="username"
-          value={username}
-          onChange={e => updateUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={e => updatePassword(e.target.value)}
-        />
-        <input
-          type="email"
-          placeholder="email"
-          value={email}
-          onChange={e => updateEmail(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="cohort"
-          value={cohort}
-          onChange={e => updateCohort(e.target.value)}
-        />
+        <h4>Join DevDesk</h4>
         <label>
+          <p>
+            First name <span>*</span>
+          </p>
+          <input
+            type="text"
+            value={firstname}
+            onChange={e => updateFirstname(e.target.value)}
+          />
+        </label>
+        <label>
+          <p>
+            Last name <span>*</span>
+          </p>
+          <input
+            type="text"
+            value={lastname}
+            onChange={e => updateLastname(e.target.value)}
+          />
+        </label>
+        <label>
+          <p>
+            Username <span>*</span>
+          </p>
+          <input
+            type="text"
+            value={username}
+            onChange={e => updateUsername(e.target.value)}
+          />
+        </label>
+        <label>
+          <p>
+            Password <span>*</span>
+          </p>
+          <input
+            type="password"
+            value={password}
+            onChange={e => updatePassword(e.target.value)}
+          />
+        </label>
+        <label>
+          <p>
+            Email <span>*</span>
+          </p>
+          <input
+            type="email"
+            value={email}
+            onChange={e => updateEmail(e.target.value)}
+          />
+        </label>
+        <label>
+          <p>Cohort</p>
+          <input
+            type="text"
+            value={cohort}
+            onChange={e => updateCohort(e.target.value)}
+          />
+        </label>
+        <label>
+          <p>
+            User type <span>*</span>
+          </p>
           <input
             type="radio"
             name="isAdmin"
@@ -92,7 +195,7 @@ const Registration = ({ register, registering, history, error }) => {
         <button type="submit">Submit {registering && 'Loading...'}</button>
       </form>
       {error && <h4>Error</h4>}
-    </div>
+    </StyledRegistration>
   );
 };
 
