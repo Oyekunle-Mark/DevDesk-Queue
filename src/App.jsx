@@ -27,8 +27,8 @@ const App = () => (
         <WithAuth exact path="/create_ticket" component={CreateTicket} />
         <WithAuth exact path="/my_tickets" component={MyTickets} />
 
-        <WithAuth exact path="/helper" component={HelperHome} />
-        <WithAuth exact path="/manage_tickets" component={ManageTickets} />
+        <WithAuth helper exact path="/helper" component={HelperHome} />
+        <WithAuth helper exact path="/manage_tickets" component={ManageTickets} />
         <Route component={NoMatchPage} />
       </Switch>
     </div>
