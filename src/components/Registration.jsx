@@ -1,17 +1,17 @@
-import React, { createRef } from 'react';
+import React, { useState } from 'react';
 import { func, bool, object } from 'prop-types';
 import { connect } from 'react-redux';
 
 import { register } from '../state/actionCreators/authActionCreators';
 
 const Registration = ({ register, registering, history, error }) => {
-  const firstname = createRef();
-  const lastname = createRef();
-  const username = createRef();
-  const password = createRef();
-  const email = createRef();
-  const isAdmin = createRef();
-  const cohort = createRef();
+  const [firstname, updateFirstname] = useState('');
+  const [lastname, updateLastname] = useState('');
+  const [username, updateUsername] = useState('');
+  const [password, updatePassword] = useState('');
+  const [email, updateEmail] = useState('');
+  const [isAdmin, updateIsAdmin] = useState(0);
+  const [cohort, updateCohort] = useState('');
 
   const handleRegistration = e => {
     e.preventDefault();
@@ -34,18 +34,58 @@ const Registration = ({ register, registering, history, error }) => {
       <form onSubmit={handleRegistration}>
         <h3>Register</h3>
 
-        <input type="text" placeholder="firstname" ref={firstname} />
-        <input type="text" placeholder="lastname" ref={lastname} />
-        <input type="text" placeholder="username" ref={username} />
-        <input type="password" placeholder="password" ref={password} />
-        <input type="email" placeholder="email" ref={email} />
-        <input type="text" placeholder="cohort" ref={cohort} />
+        <input
+          type="text"
+          placeholder="firstname"
+          value={firstname}
+          onChange={e => updateFirstname(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="lastname"
+          value={lastname}
+          onChange={e => updateLastname(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="username"
+          value={username}
+          onChange={e => updateUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={e => updatePassword(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="email"
+          value={email}
+          onChange={e => updateEmail(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="cohort"
+          value={cohort}
+          onChange={e => updateCohort(e.target.value)}
+        />
         <label>
-          User type:
-          <select ref={isAdmin}>
-            <option value={0}>Student</option>
-            <option value={1}>Helper</option>
-          </select>
+          <input
+            type="radio"
+            name="isAdmin"
+            value={isAdmin}
+            onChange={() => updateIsAdmin(0)}
+            defaultChecked
+          />
+          Student
+          <input
+            type="radio"
+            name="isAdmin"
+            value={isAdmin}
+            onChange={() => updateIsAdmin(1)}
+          />
+          Helper
         </label>
         <button type="submit">Submit {registering && 'Loading...'}</button>
       </form>
