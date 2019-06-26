@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, object, func, bool } from 'prop-types';
+import styled from 'styled-components';
 
 import {
   getStudentTickets,
@@ -11,6 +12,31 @@ import {
 import Ticket from './Ticket';
 import StudentNav from './StudentNav';
 import UpdateTicket from './UpdateTicket';
+
+const StyledMyTickets = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
+const StyledTicket = styled.div`
+  border-right: 0;
+  border-bottom: 0;
+  border-left: ${props =>
+    props.color ? '1px solid #2cbe4e' : '1px solid #e76e54'};
+  border-top: ${props =>
+    props.color ? '1px solid #2cbe4e' : '1px solid #e76e54'};
+  margin: 15px;
+
+  img {
+    height: 30px;
+    width: 30px;
+  }
+
+  img:hover {
+    cursor: pointer;
+  }
+`;
 
 const MyTickets = ({
   gettingTickets,
@@ -33,13 +59,18 @@ const MyTickets = ({
     else setEditing(id);
   };
 
+  const editIcon = '../../../assets/edit.svg';
+  const cancelIcon = '../../../assets/cancel.svg';
+
   const studentsTickets = tickets.map(ticket => {
     if (ticket.user_id === userId)
       return (
-        <div key={ticket.id}>
-          <button onClick={() => toggleEditing(ticket.id)}>
-            {editing === ticket.id ? 'Cancel' : 'Edit'}
-          </button>
+        <StyledTicket key={ticket.id} color={ticket.resolved}>
+          <img
+            onClick={() => toggleEditing(ticket.id)}
+            src={editing === ticket.id ? cancelIcon : editIcon}
+            alt="edit"
+          />
           {editing !== ticket.id ? (
             <Ticket {...ticket} remove={deleteTicket} myTicket />
           ) : null}
@@ -53,16 +84,18 @@ const MyTickets = ({
               removeEditing={setEditing}
             />
           ) : null}
-        </div>
+        </StyledTicket>
       );
   });
 
   return (
     <div>
       <StudentNav />
-      {gettingTickets && <h4>Loading</h4>}
-      {error && <h4>Error</h4>}
-      {studentsTickets}
+      <StyledMyTickets>
+        {gettingTickets && <h4>Loading</h4>}
+        {error && <h4>Error</h4>}
+        {studentsTickets}
+      </StyledMyTickets>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 
 import LandingPage from './components/LandingPage';
 import Registration from './components/Registration';
@@ -12,9 +13,25 @@ import HelperHome from './components/helperComponents/HelperHome';
 import ManageTickets from './components/helperComponents/ManageTickets';
 import NoMatchPage from './components/noMatchPage';
 
+const StyledApp = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-height: 100vh;
+  background: #161f2a;
+  color: #fdfdfd;
+  font-family: 'Montserrat', sans-serif;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
 const App = () => (
   <Router>
-    <div>
+    <StyledApp>
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route
@@ -27,11 +44,11 @@ const App = () => (
         <WithAuth exact path="/create_ticket" component={CreateTicket} />
         <WithAuth exact path="/my_tickets" component={MyTickets} />
 
-        <WithAuth exact path="/helper" component={HelperHome} />
-        <WithAuth exact path="/manage_tickets" component={ManageTickets} />
+        <WithAuth helper exact path="/helper" component={HelperHome} />
+        <WithAuth helper exact path="/manage_tickets" component={ManageTickets} />
         <Route component={NoMatchPage} />
       </Switch>
-    </div>
+    </StyledApp>
   </Router>
 );
 

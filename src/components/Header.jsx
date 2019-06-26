@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const StyledStudentNav = styled.nav`
+const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,7 +10,6 @@ const StyledStudentNav = styled.nav`
   background: #101822;
   padding: 7px 15px;
   border-bottom: 1px solid #777777;
-  margin-bottom: 20px;
 
   div {
     display: flex;
@@ -34,16 +33,11 @@ const StyledStudentNav = styled.nav`
   div a:hover {
     text-decoration: underline;
   }
-
-  .selected {
-    color: #b6b6b6;
-    font-weight: bold;
-  }
 `;
 
-const StudentNav = () => (
-  <StyledStudentNav>
-    <Link to="/home">
+const Header = () => (
+  <StyledHeader>
+    <Link to="/">
       <div>
         <img src="../../assets/dev.svg" alt="logo" />
 
@@ -52,17 +46,10 @@ const StudentNav = () => (
     </Link>
 
     <div>
-      <NavLink to="/home" activeClassName="selected">
-        Help Channel
-      </NavLink>
-      <NavLink to="/create_ticket" activeClassName="selected">
-        Create Ticket
-      </NavLink>
-      <NavLink to="/my_tickets" activeClassName="selected">
-        My Tickets
-      </NavLink>
+      <Link to="/login">Login</Link>
+      <Link to="/join">Register</Link>
     </div>
-  </StyledStudentNav>
+  </StyledHeader>
 );
 
-export default StudentNav;
+export default Header;

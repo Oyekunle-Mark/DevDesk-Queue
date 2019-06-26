@@ -1,10 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, object, func, bool } from 'prop-types';
+import styled from 'styled-components';
 
 import { getTickets } from '../../state/actionCreators/ticketActionCreators';
 import Ticket from './Ticket';
 import StudentNav from './StudentNav';
+
+const StyledStudentHome = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
 
 const StudentHome = ({ tickets, getTickets, gettingTickets, error }) => {
   useEffect(getTickets, []);
@@ -16,10 +23,11 @@ const StudentHome = ({ tickets, getTickets, gettingTickets, error }) => {
   return (
     <div>
       <StudentNav />
-      <h4>Open Tickets</h4>
-      {gettingTickets && <h4>Loading...</h4>}
-      {error && <h4>Error</h4>}
-      {ticketList}
+      <StyledStudentHome>
+        {gettingTickets && <h4>Loading...</h4>}
+        {error && <h4>Error</h4>}
+        {ticketList}
+      </StyledStudentHome>
     </div>
   );
 };

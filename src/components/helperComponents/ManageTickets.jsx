@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { arrayOf, object, bool, func } from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import {
   getAdminTickets,
@@ -8,6 +9,12 @@ import {
 } from '../../state/actionCreators/helperTicketActionCreators';
 import HelperNav from './HelperNav';
 import HelperTicket from './HelperTicket';
+
+const StyledManageTickets = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
 
 const ManageTickets = ({
   tickets,
@@ -35,9 +42,11 @@ const ManageTickets = ({
   return (
     <div>
       <HelperNav />
-      {gettingTickets && <h4>Loading</h4>}
-      {error && <h4>Error</h4>}
-      {myTicketList}
+      <StyledManageTickets>
+        {gettingTickets && <h4>Loading</h4>}
+        {error && <h4>Error</h4>}
+        {myTicketList}
+      </StyledManageTickets>
     </div>
   );
 };
