@@ -3,6 +3,7 @@ import { func, bool, object } from 'prop-types';
 import { connect } from 'react-redux';
 
 import { login } from '../state/actionCreators/authActionCreators';
+import Header from './Header';
 
 const Login = ({ login, loginIn, history, error }) => {
   const username = createRef();
@@ -22,6 +23,7 @@ const Login = ({ login, loginIn, history, error }) => {
   return (
     <div>
       <form onSubmit={handleLogin}>
+        <Header />
         <h3>Login</h3>
 
         <input type="text" placeholder="username" ref={username} />

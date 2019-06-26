@@ -3,6 +3,7 @@ import { func, bool, object } from 'prop-types';
 import { connect } from 'react-redux';
 
 import { register } from '../state/actionCreators/authActionCreators';
+import Header from './Header';
 
 const Registration = ({ register, registering, history, error }) => {
   const [firstname, updateFirstname] = useState('');
@@ -31,9 +32,10 @@ const Registration = ({ register, registering, history, error }) => {
 
   return (
     <div>
-      <form onSubmit={handleRegistration}>
-        <h3>Register</h3>
+      <Header />
+      <h3>Register</h3>
 
+      <form onSubmit={handleRegistration}>
         <input
           type="text"
           placeholder="firstname"
