@@ -1,12 +1,19 @@
 import React, { useEffect } from 'react';
 import { func, arrayOf, object, bool } from 'prop-types';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { getTickets } from '../../state/actionCreators/ticketActionCreators';
 import { updateHelperTicket } from '../../state/actionCreators/helperTicketActionCreators';
 
 import HelperNav from './HelperNav';
 import HelperTicket from './HelperTicket';
+
+const StyledHelperHome = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
 
 const HelperHome = ({
   getTickets,
@@ -33,8 +40,10 @@ const HelperHome = ({
   return (
     <div>
       <HelperNav />
-      {gettingTickets && <h4>Loading</h4>}
-      {ticketList}
+      <StyledHelperHome>
+        {gettingTickets && <h4>Loading</h4>}
+        {ticketList}
+      </StyledHelperHome>
     </div>
   );
 };
