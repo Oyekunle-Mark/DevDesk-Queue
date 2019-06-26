@@ -10,6 +10,7 @@ const StyledStudentNav = styled.nav`
   background: #101822;
   padding: 7px 15px;
   border-bottom: 1px solid #777777;
+  margin-bottom: 20px;
 
   div {
     display: flex;
