@@ -9,6 +9,7 @@ const StyledHeader = styled.header`
 
   background: #101822;
   padding: 7px 15px;
+  border-bottom: 1px solid #777777;
 
   div {
     display: flex;
