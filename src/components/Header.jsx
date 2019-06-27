@@ -33,6 +33,12 @@ const StyledHeader = styled.header`
   div a:hover {
     text-decoration: underline;
   }
+
+  @media screen and (max-width: 500px) {
+    div h1 {
+      display: none;
+    }
+  }
 `;
 
 const Header = () => (
