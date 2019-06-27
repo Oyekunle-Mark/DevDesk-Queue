@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { func, bool, object } from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 import { register } from '../state/actionCreators/authActionCreators';
 import Header from './Header';
@@ -218,7 +219,13 @@ const Registration = ({ register, registering, history, error }) => {
           />
           Helper
         </label>
-        <button type="submit">Submit {registering && 'Loading...'}</button>
+        <button type="submit">
+          {registering ? (
+            <Loader type="ThreeDots" color="#fdfdfd" height={30} width={30} />
+          ) : (
+            'Submit'
+          )}
+        </button>
         {error && <h5>Error creating account.</h5>}
       </form>
     </StyledRegistration>

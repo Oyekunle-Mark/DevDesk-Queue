@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import { func, bool, object } from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 import { login } from '../state/actionCreators/authActionCreators';
 import Header from './Header';
@@ -136,7 +137,18 @@ const Login = ({ login, loginIn, history, error }) => {
           </p>
           <input type="password" placeholder="password" ref={password} />
         </label>
-        <button type="submit">{loginIn ? 'Loading...' : 'Login'}</button>
+        <button type="submit">
+          {loginIn ? (
+            <Loader
+              type="ThreeDots"
+              color="#fdfdfd"
+              height={30}
+              width={30}
+            />
+          ) : (
+            'Login'
+          )}
+        </button>
         {error && <h5>Incorrect username or password.</h5>}
       </form>
     </StyledLogin>
