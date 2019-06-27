@@ -78,7 +78,7 @@ const StyledCreateTicket = styled.div`
 
   @media screen and (max-width: 600px) {
     form {
-      width: 250px;
+      width: 220px;
     }
 
     h2 {

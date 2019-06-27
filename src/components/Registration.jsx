@@ -92,7 +92,7 @@ const StyledRegistration = styled.div`
 
   @media screen and (max-width: 500px) {
     form {
-      width: 250px;
+      width: 220px;
     }
 
     h2 {
