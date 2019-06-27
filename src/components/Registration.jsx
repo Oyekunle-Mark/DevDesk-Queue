@@ -80,6 +80,12 @@ const StyledRegistration = styled.div`
   button:hover {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 500px) {
+    form {
+      width: 250px;
+    }
+  }
 `;
 
 const Registration = ({ register, registering, history, error }) => {
