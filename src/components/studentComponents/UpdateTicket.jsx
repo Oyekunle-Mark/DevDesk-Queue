@@ -36,7 +36,7 @@ const StyledUpdateTicket = styled.div`
     font-family: 'Montserrat', sans-serif;
   }
 
-  button {
+  form button {
     background: #55b95a;
     color: #fdfdfd;
     font-size: 15px;
@@ -45,7 +45,7 @@ const StyledUpdateTicket = styled.div`
     height: 22px;
   }
 
-  button:hover {
+  form button:hover {
     cursor: pointer;
   }
 `;
@@ -88,7 +88,6 @@ const UpdateTicket = ({
         <textarea
           value={descriptionValue}
           onChange={changeDescription}
-          rows="3"
           cols="37"
         />
         <input
