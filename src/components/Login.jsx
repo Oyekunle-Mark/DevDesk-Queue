@@ -81,6 +81,10 @@ const StyledLogin = styled.div`
     form {
       width: 250px;
     }
+
+    h2 {
+      font-size: 20px;
+    }
   }
 `;
 
