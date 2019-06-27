@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { func, arrayOf, object, bool } from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 import { getTickets } from '../../state/actionCreators/ticketActionCreators';
 import { updateHelperTicket } from '../../state/actionCreators/helperTicketActionCreators';
@@ -13,6 +14,11 @@ const StyledHelperHome = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+`;
+
+const StyledPendingState = styled.article`
+  display: flex;
+  justify-content: center;
 `;
 
 const HelperHome = ({
@@ -40,10 +46,12 @@ const HelperHome = ({
   return (
     <div>
       <HelperNav />
-      <StyledHelperHome>
-        {gettingTickets && <h4>Loading</h4>}
-        {ticketList}
-      </StyledHelperHome>
+      <StyledPendingState>
+        {gettingTickets && (
+          <Loader type="TailSpin" color="#fdfdfd" height={80} width={80} />
+        )}
+      </StyledPendingState>
+      <StyledHelperHome>{ticketList}</StyledHelperHome>
     </div>
   );
 };
