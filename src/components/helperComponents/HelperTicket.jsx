@@ -3,7 +3,7 @@ import { number, string, func, bool } from 'prop-types';
 import styled from 'styled-components';
 
 const StyledHelperTicket = styled.div`
-  width: 300px;
+  width: 250px;
   background: #ffffff;
   color: #212529;
   padding: 15px;
@@ -60,7 +60,7 @@ const StyledHelperTicket = styled.div`
   }
 
   @media screen and (max-width: 300px) {
-    width: 250px;
+    width: 150px;
   }
 `;
 
