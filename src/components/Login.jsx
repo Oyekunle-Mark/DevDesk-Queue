@@ -76,6 +76,12 @@ const StyledLogin = styled.div`
   button:hover {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 500px) {
+    form {
+      width: 250px;
+    }
+  }
 `;
 
 const Login = ({ login, loginIn, history, error }) => {
