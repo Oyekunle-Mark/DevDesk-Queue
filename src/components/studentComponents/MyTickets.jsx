@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, object, func, bool } from 'prop-types';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 import {
   getStudentTickets,
@@ -46,6 +47,19 @@ const StyledTicket = styled.div`
   @media screen and (max-width: 500px) {
     width: 350px;
     margin: 20px 0;
+  }
+`;
+
+const StyledPendingState = styled.article`
+  display: flex;
+  justify-content: center;
+
+  h5 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: center;
+    color: red;
   }
 `;
 
@@ -97,11 +111,13 @@ const MyTickets = ({
   return (
     <div>
       <StudentNav />
-      <StyledMyTickets>
-        {gettingTickets && <h4>Loading</h4>}
-        {error && <h4>Error</h4>}
-        {studentsTickets}
-      </StyledMyTickets>
+      <StyledPendingState>
+        {gettingTickets && (
+          <Loader type="TailSpin" color="#fdfdfd" height={80} width={80} />
+        )}
+        {error && <h5>Error</h5>}
+      </StyledPendingState>
+      <StyledMyTickets>{studentsTickets}</StyledMyTickets>
     </div>
   );
 };
