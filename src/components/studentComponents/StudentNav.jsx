@@ -36,8 +36,21 @@ const StyledStudentNav = styled.nav`
   }
 
   .selected {
-    color: #b6b6b6;
+    color: #247adb;
     font-weight: bold;
+  }
+
+  @media screen and (max-width: 600px) {
+    div h1 {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    div a {
+      margin: 0 5px;
+      font-size: 11px;
+    }
   }
 `;
 
