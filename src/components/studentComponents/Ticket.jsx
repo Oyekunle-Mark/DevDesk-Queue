@@ -40,6 +40,10 @@ const StyledTicket = styled.div`
     font-style: italic;
     font-weight: bold;
   }
+
+  @media screen and (max-width: 300px) {
+    width: 150px;
+  }
 `;
 
 const Ticket = ({ id, title, category, description, remove, myTicket }) => (
