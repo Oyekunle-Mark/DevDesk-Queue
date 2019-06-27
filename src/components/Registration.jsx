@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { func, bool, object } from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 import { register } from '../state/actionCreators/authActionCreators';
 import Header from './Header';
@@ -34,6 +35,14 @@ const StyledRegistration = styled.div`
     font-size: 17px;
     font-weight: bold;
     margin-bottom: 30px;
+  }
+
+  h5 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: center;
+    color: red;
   }
 
   label {
@@ -80,6 +89,16 @@ const StyledRegistration = styled.div`
   button:hover {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 500px) {
+    form {
+      width: 220px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+  }
 `;
 
 const Registration = ({ register, registering, history, error }) => {
@@ -94,17 +113,25 @@ const Registration = ({ register, registering, history, error }) => {
   const handleRegistration = e => {
     e.preventDefault();
 
-    register(
-      firstname,
-      lastname,
-      username,
-      password,
-      email,
-      isAdmin,
-      cohort,
-    ).then(res => {
-      if (res.status === 200) history.push('/login');
-    });
+    if (
+      firstname.length >= 2 &&
+      lastname.length >= 2 &&
+      username.length >= 4 &&
+      password.length >= 4 &&
+      email.length >= 6
+    ) {
+      register(
+        firstname,
+        lastname,
+        username,
+        password,
+        email,
+        isAdmin,
+        cohort,
+      ).then(res => {
+        if (res.status === 200) history.push('/login');
+      });
+    }
   };
 
   return (
@@ -192,9 +219,15 @@ const Registration = ({ register, registering, history, error }) => {
           />
           Helper
         </label>
-        <button type="submit">Submit {registering && 'Loading...'}</button>
+        <button type="submit">
+          {registering ? (
+            <Loader type="ThreeDots" color="#fdfdfd" height={30} width={30} />
+          ) : (
+            'Submit'
+          )}
+        </button>
+        {error && <h5>Error creating account.</h5>}
       </form>
-      {error && <h4>Error</h4>}
     </StyledRegistration>
   );
 };

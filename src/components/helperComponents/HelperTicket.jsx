@@ -3,7 +3,7 @@ import { number, string, func, bool } from 'prop-types';
 import styled from 'styled-components';
 
 const StyledHelperTicket = styled.div`
-  width: 300px;
+  width: 250px;
   background: #ffffff;
   color: #212529;
   padding: 15px;
@@ -53,6 +53,15 @@ const StyledHelperTicket = styled.div`
   button:hover {
     cursor: pointer;
   }
+
+  .resolve {
+    background: #71cfe1;
+    height: 25px;
+  }
+
+  @media screen and (max-width: 300px) {
+    width: 150px;
+  }
 `;
 
 const HelperTicket = ({
@@ -73,11 +82,13 @@ const HelperTicket = ({
       <div>
         <h3>{title}</h3>
         {reAssign && (
-          <img src="../../../assets/checked.svg" alt="check" onClick={() => update(id, 1, 1, userId)} />
+          <button className="resolve" onClick={() => update(id, 1, 1, userId)}>Resolve</button>
         )}
       </div>
       <p>{description}</p>
-      <p><span>Category: {category}</span></p>
+      <p>
+        <span>Category: {category}</span>
+      </p>
       {assign && (
         <button onClick={() => assignToSelf(id, resolved, 1, userId)}>
           Help Student

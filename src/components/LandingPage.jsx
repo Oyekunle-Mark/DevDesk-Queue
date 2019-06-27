@@ -14,41 +14,64 @@ const StyledMain = styled.main`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  padding: 20px;
+  min-height: 70vh;
+  padding: 50px 20px;
 
-  div {
-    width: 50%;
+  @media screen and (max-width: 700px) {
+    flex-direction: column-reverse;
+    padding: 10px;
   }
+`;
 
-  div h2 {
+const StyledCaption = styled.div`
+  width: 45%;
+
+  h2 {
     font-size: 40px;
     line-height: 50px;
   }
 
-  div h6 {
+  h6 {
     font-size: 16px;
     margin: 20px 0;
   }
 
-  img {
-    max-width: 700px;
-    height: auto;
-  }
-
-  div a button {
-    margin: 20px 60px 20px 0;
+  a button {
+    margin: 20px 25px 20px 0;
     background: #55b95a;
     color: #fdfdfd;
     font-size: 15px;
-    width: 150px;
+    width: 120px;
     height: 40px;
     border: 1px solid #55b95a;
     border-radius: 3px;
   }
 
-  div a button:hover {
+  a button:hover {
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 90%;
+    text-align: center;
+
+    h2 {
+      font-size: 30px;
+      line-height: 40px;
+    }
+  }
+`;
+
+const StyledHeroImage = styled.div`
+width: 50%;
+
+  img {
+    max-width: 100%;
+    width: auto;
+  }
+
+  @media screen and (max-width: 700px) {
+    width: 90%;
   }
 `;
 
@@ -56,7 +79,7 @@ const LandingPage = () => (
   <StyledLandingPage>
     <Header />
     <StyledMain>
-      <div>
+      <StyledCaption>
         <h2>
           DevDesk Queue is a place where you can escalate your concerns and
           receive help.
@@ -68,11 +91,11 @@ const LandingPage = () => (
         <Link to="/login">
           <button>Login</button>
         </Link>
-      </div>
+      </StyledCaption>
 
-      <div>
+      <StyledHeroImage>
         <img src="../../assets/queue.png" alt="queue" />
-      </div>
+      </StyledHeroImage>
     </StyledMain>
   </StyledLandingPage>
 );

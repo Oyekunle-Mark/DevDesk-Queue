@@ -3,7 +3,7 @@ import { string, func, number, bool } from 'prop-types';
 import styled from 'styled-components';
 
 const StyledTicket = styled.div`
-  width: 300px;
+  width: 250px;
   background: #ffffff;
   color: #212529;
   padding: 15px;
@@ -39,6 +39,10 @@ const StyledTicket = styled.div`
     font-size: 12px;
     font-style: italic;
     font-weight: bold;
+  }
+
+  @media screen and (max-width: 300px) {
+    width: 150px;
   }
 `;
 

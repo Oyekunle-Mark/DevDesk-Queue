@@ -2,6 +2,7 @@ import React, { createRef } from 'react';
 import { func, bool, object } from 'prop-types';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 import { login } from '../state/actionCreators/authActionCreators';
 import Header from './Header';
@@ -34,6 +35,14 @@ const StyledLogin = styled.div`
     font-size: 17px;
     font-weight: bold;
     margin-bottom: 30px;
+  }
+
+  h5 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: center;
+    color: red;
   }
 
   label {
@@ -76,6 +85,16 @@ const StyledLogin = styled.div`
   button:hover {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 500px) {
+    form {
+      width: 220px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+  }
 `;
 
 const Login = ({ login, loginIn, history, error }) => {
@@ -85,12 +104,17 @@ const Login = ({ login, loginIn, history, error }) => {
   const handleLogin = e => {
     e.preventDefault();
 
-    login(username.current.value, password.current.value).then(res => {
-      if (res.status === 200) {
-        if (res.data.user.isAdmin === 1) history.push('/helper');
-        else history.push('/home');
-      }
-    });
+    if (
+      username.current.value.length >= 4 &&
+      password.current.value.length >= 4
+    ) {
+      login(username.current.value, password.current.value).then(res => {
+        if (res.status === 200) {
+          if (res.data.user.isAdmin === 1) history.push('/helper');
+          else history.push('/home');
+        }
+      });
+    }
   };
 
   return (
@@ -113,9 +137,20 @@ const Login = ({ login, loginIn, history, error }) => {
           </p>
           <input type="password" placeholder="password" ref={password} />
         </label>
-        <button type="submit">Login {loginIn && 'Loading...'}</button>
+        <button type="submit">
+          {loginIn ? (
+            <Loader
+              type="ThreeDots"
+              color="#fdfdfd"
+              height={30}
+              width={30}
+            />
+          ) : (
+            'Login'
+          )}
+        </button>
+        {error && <h5>Incorrect username or password.</h5>}
       </form>
-      {error && <h4>Error</h4>}
     </StyledLogin>
   );
 };

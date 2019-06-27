@@ -35,34 +35,67 @@ const StyledStudentNav = styled.nav`
     text-decoration: underline;
   }
 
+  div a img {
+    width: 30px;
+    height: 30px;
+  }
+
   .selected {
-    color: #b6b6b6;
+    color: #247adb;
     font-weight: bold;
+  }
+
+  @media screen and (max-width: 600px) {
+    div h1 {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    div a {
+      margin: 0 5px;
+      font-size: 11px;
+    }
+
+    div a img {
+      margin: 0;
+    }
   }
 `;
 
-const StudentNav = () => (
-  <StyledStudentNav>
-    <Link to="/home">
+const StudentNav = () => {
+  const handleLogout = () => localStorage.clear();
+
+  return (
+    <StyledStudentNav>
+      <Link to="/home">
+        <div>
+          <img src="../../assets/dev.svg" alt="logo" />
+
+          <h1>DevDesk</h1>
+        </div>
+      </Link>
+
       <div>
-        <img src="../../assets/dev.svg" alt="logo" />
-
-        <h1>DevDesk</h1>
+        <NavLink to="/home" activeClassName="selected">
+          Help Channel
+        </NavLink>
+        <NavLink to="/create_ticket" activeClassName="selected">
+          Create Ticket
+        </NavLink>
+        <NavLink to="/my_tickets" activeClassName="selected">
+          My Tickets
+        </NavLink>
+        <Link to="/">
+          <img
+            src="../../../assets/exit.svg"
+            alt="exit"
+            onClick={handleLogout}
+          />
+        </Link>
       </div>
-    </Link>
-
-    <div>
-      <NavLink to="/home" activeClassName="selected">
-        Help Channel
-      </NavLink>
-      <NavLink to="/create_ticket" activeClassName="selected">
-        Create Ticket
-      </NavLink>
-      <NavLink to="/my_tickets" activeClassName="selected">
-        My Tickets
-      </NavLink>
-    </div>
-  </StyledStudentNav>
-);
+    </StyledStudentNav>
+  );
+};
 
 export default StudentNav;

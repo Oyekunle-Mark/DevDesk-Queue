@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { func, bool, object } from 'prop-types';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 import { createTicket } from '../../state/actionCreators/ticketActionCreators';
 import StudentNav from './StudentNav';
@@ -74,6 +75,16 @@ const StyledCreateTicket = styled.div`
   button:hover {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 600px) {
+    form {
+      width: 220px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+  }
 `;
 
 const CreateTicket = ({ createTicket, creatingTicket, error, history }) => {
@@ -90,11 +101,17 @@ const CreateTicket = ({ createTicket, creatingTicket, error, history }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    createTicket(titleValue, descriptionValue, categoryValue, userId).then(
-      res => {
-        if (res.status === 201) history.push('/home');
-      },
-    );
+    if (
+      titleValue.length >= 3 &&
+      descriptionValue.length >= 5 &&
+      categoryValue.length >= 3
+    ) {
+      createTicket(titleValue, descriptionValue, categoryValue, userId).then(
+        res => {
+          if (res.status === 201) history.push('/home');
+        },
+      );
+    }
   };
   return (
     <StyledCreateTicket>
@@ -124,10 +141,14 @@ const CreateTicket = ({ createTicket, creatingTicket, error, history }) => {
           onChange={changeCategory}
         />
         <button type="submit">
-          Create Ticket {creatingTicket && <h4>Submitting</h4>}
+          {creatingTicket ? (
+            <Loader type="ThreeDots" color="#fdfdfd" height={30} width={30} />
+          ) : (
+            'Create'
+          )}
         </button>
+        {error && <h5>Error</h5>}
       </form>
-      {error && <h4>Error</h4>}
     </StyledCreateTicket>
   );
 };

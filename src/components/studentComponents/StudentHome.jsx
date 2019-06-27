@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, object, func, bool } from 'prop-types';
 import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
 import { getTickets } from '../../state/actionCreators/ticketActionCreators';
 import Ticket from './Ticket';
@@ -11,6 +12,19 @@ const StyledStudentHome = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+`;
+
+const StyledPendingState = styled.article`
+  display: flex;
+  justify-content: center;
+
+  h5 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: center;
+    color: red;
+  }
 `;
 
 const StudentHome = ({ tickets, getTickets, gettingTickets, error }) => {
@@ -23,11 +37,13 @@ const StudentHome = ({ tickets, getTickets, gettingTickets, error }) => {
   return (
     <div>
       <StudentNav />
-      <StyledStudentHome>
-        {gettingTickets && <h4>Loading...</h4>}
-        {error && <h4>Error</h4>}
-        {ticketList}
-      </StyledStudentHome>
+      <StyledPendingState>
+        {gettingTickets && (
+          <Loader type="TailSpin" color="#fdfdfd" height={80} width={80} />
+        )}
+        {error && <h5>Error</h5>}
+      </StyledPendingState>
+      <StyledStudentHome>{ticketList}</StyledStudentHome>
     </div>
   );
 };
