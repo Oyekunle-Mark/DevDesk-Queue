@@ -6,7 +6,7 @@ const StyledUpdateTicket = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 250px;
     background: #ffffff;
     color: #212529;
     padding: 15px;
