@@ -35,6 +35,11 @@ const StyledHelperNav = styled.nav`
     text-decoration: underline;
   }
 
+  div a img {
+    width: 30px;
+    height: 30px;
+  }
+
   .selected {
     color: #247adb;
     font-weight: bold;
@@ -51,28 +56,43 @@ const StyledHelperNav = styled.nav`
       margin: 0 5px;
       font-size: 11px;
     }
+
+    div a img {
+      margin: 0;
+    }
   }
 `;
 
-const HelperNav = () => (
-  <StyledHelperNav>
-    <Link to="/helper">
+const HelperNav = () => {
+  const handleLogout = () => localStorage.clear();
+
+  return (
+    <StyledHelperNav>
+      <Link to="/helper">
+        <div>
+          <img src="../../assets/dev.svg" alt="logo" />
+
+          <h1>DevDesk</h1>
+        </div>
+      </Link>
+
       <div>
-        <img src="../../assets/dev.svg" alt="logo" />
-
-        <h1>DevDesk</h1>
+        <NavLink to="/helper" activeClassName="selected">
+          Open Tickets
+        </NavLink>
+        <NavLink to="/manage_tickets" activeClassName="selected">
+          Manage Tickets
+        </NavLink>
+        <Link to="/">
+          <img
+            src="../../../assets/exit.svg"
+            alt="exit"
+            onClick={handleLogout}
+          />
+        </Link>
       </div>
-    </Link>
-
-    <div>
-      <NavLink to="/helper" activeClassName="selected">
-        Open Tickets
-      </NavLink>
-      <NavLink to="/manage_tickets" activeClassName="selected">
-        Manage Tickets
-      </NavLink>
-    </div>
-  </StyledHelperNav>
-);
+    </StyledHelperNav>
+  );
+};
 
 export default HelperNav;
