@@ -36,6 +36,14 @@ const StyledLogin = styled.div`
     margin-bottom: 30px;
   }
 
+  h5 {
+    font-size: 17px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: center;
+    color: red;
+  }
+
   label {
     margin: 10px 0;
   }
@@ -95,12 +103,17 @@ const Login = ({ login, loginIn, history, error }) => {
   const handleLogin = e => {
     e.preventDefault();
 
-    login(username.current.value, password.current.value).then(res => {
-      if (res.status === 200) {
-        if (res.data.user.isAdmin === 1) history.push('/helper');
-        else history.push('/home');
-      }
-    });
+    if (
+      username.current.value.length >= 4 &&
+      password.current.value.length >= 4
+    ) {
+      login(username.current.value, password.current.value).then(res => {
+        if (res.status === 200) {
+          if (res.data.user.isAdmin === 1) history.push('/helper');
+          else history.push('/home');
+        }
+      });
+    }
   };
 
   return (
@@ -123,9 +136,9 @@ const Login = ({ login, loginIn, history, error }) => {
           </p>
           <input type="password" placeholder="password" ref={password} />
         </label>
-        <button type="submit">Login {loginIn && 'Loading...'}</button>
+        <button type="submit">{loginIn ? 'Loading...' : 'Login'}</button>
+        {error && <h5>Incorrect username or password.</h5>}
       </form>
-      {error && <h4>Error</h4>}
     </StyledLogin>
   );
 };
