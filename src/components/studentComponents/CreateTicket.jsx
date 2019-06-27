@@ -74,6 +74,16 @@ const StyledCreateTicket = styled.div`
   button:hover {
     cursor: pointer;
   }
+
+  @media screen and (max-width: 600px) {
+    form {
+      width: 250px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+  }
 `;
 
 const CreateTicket = ({ createTicket, creatingTicket, error, history }) => {
