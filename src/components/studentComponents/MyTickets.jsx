@@ -23,18 +23,29 @@ const StyledTicket = styled.div`
   border-right: 0;
   border-bottom: 0;
   border-left: ${props =>
-    props.color ? '1px solid #2cbe4e' : '1px solid #e76e54'};
+    props.color ? '2px solid #2cbe4e' : '2px solid #e76e54'};
   border-top: ${props =>
-    props.color ? '1px solid #2cbe4e' : '1px solid #e76e54'};
+    props.color ? '2px solid #2cbe4e' : '2px solid #e76e54'};
+  border-radius: 16px;
   margin: 15px;
 
-  img {
+  button {
+    width: 70px;
     height: 30px;
-    width: 30px;
+    background: #5dddd3;
+    color: #ffffff;
+    font-size: 12px;
+    border: 1px solid #5dddd3;
+    border-radius: 14px;
   }
 
-  img:hover {
+  button:hover {
     cursor: pointer;
+  }
+
+  @media screen and (max-width: 500px) {
+    width: 350px;
+    margin: 20px 0;
   }
 `;
 
@@ -59,18 +70,13 @@ const MyTickets = ({
     else setEditing(id);
   };
 
-  const editIcon = '../../../assets/edit.svg';
-  const cancelIcon = '../../../assets/cancel.svg';
-
   const studentsTickets = tickets.map(ticket => {
     if (ticket.user_id === userId)
       return (
         <StyledTicket key={ticket.id} color={ticket.resolved}>
-          <img
-            onClick={() => toggleEditing(ticket.id)}
-            src={editing === ticket.id ? cancelIcon : editIcon}
-            alt="edit"
-          />
+          <button onClick={() => toggleEditing(ticket.id)}>
+            {editing === ticket.id ? 'Cancel' : 'Edit'}
+          </button>
           {editing !== ticket.id ? (
             <Ticket {...ticket} remove={deleteTicket} myTicket />
           ) : null}
