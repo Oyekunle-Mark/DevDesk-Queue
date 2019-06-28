@@ -96,7 +96,7 @@ const UpdateTicket = ({
           onChange={changeCategory}
         />
         <button type="submit">
-          Update Ticket {updatingTicket && <h4>Updating</h4>}
+          Update {updatingTicket && <h4>Updating</h4>}
         </button>
       </form>
       {error && <h4>Error</h4>}
