@@ -23,7 +23,7 @@ and `npm run start` to start the development-server.
 
 ## User Interface
 
-This application is hosted on Netlify. Find it [here](devdesk.netlify.com)
+This application is hosted on Netlify. Find it [here](https://devdesk.netlify.com/)
 
 ## Author
 
