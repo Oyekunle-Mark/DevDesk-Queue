@@ -1,5 +1,13 @@
 const cacheName = 'devDesk';
-const filesToCache = ['/', '/index.html', '/bundle/bundle.js'];
+const filesToCache = [
+  '/',
+  '/index.html',
+  '/bundle/bundle.js',
+  '/assets/dev.svg',
+  '/assets/queue.png',
+  '/assets/delete.svg',
+  '/assets/exit.svg',
+];
 
 // start the service worker and cache all the app's content
 self.addEventListener('install', e => {
